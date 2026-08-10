@@ -18,6 +18,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_json_1 = __importDefault(require("../../metadata/users.json"));
+const createProfile_dto_1 = require("./dto/createProfile.dto");
+const updateProfile_dto_1 = require("./dto/updateProfile.dto");
 let UsersController = class UsersController {
     findAll(location) {
         return [{ location }];
@@ -25,8 +27,20 @@ let UsersController = class UsersController {
     findOne(id) {
         const idNum = Number(id);
         const user = users_json_1.default.filter(u => u.id === idNum);
-        console.log(id, idNum);
         return user;
+    }
+    create(createProfile) {
+        return {
+            name: createProfile.name,
+            age: createProfile.age,
+            address: createProfile.address
+        };
+    }
+    update(id, updateProfile) {
+        return {
+            id,
+            ...updateProfile
+        };
     }
 };
 exports.UsersController = UsersController;
@@ -44,6 +58,21 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [createProfile_dto_1.CreateProfileDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, updateProfile_dto_1.updateProfileDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "update", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users')
 ], UsersController);
