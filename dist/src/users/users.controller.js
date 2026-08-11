@@ -42,6 +42,11 @@ let UsersController = class UsersController {
             ...updateProfile
         };
     }
+    delete(id) {
+        return {
+            id
+        };
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -73,6 +78,13 @@ __decorate([
     __metadata("design:paramtypes", [String, updateProfile_dto_1.updateProfileDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "delete", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users')
 ], UsersController);

@@ -16,4 +16,7 @@ export declare class UsersController {
         address: string;
         id: string;
     };
+    delete(id: string): {
+        id: string;
+    };
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Param, Post, Body, Put } from '@nestjs/common';
+import { Controller, Get, Query, Param, Post, Body, Put, Delete } from '@nestjs/common';
 import usersJson  from '../../metadata/users.json';
 import { CreateProfileDto } from './dto/createProfile.dto';
 import { updateProfileDto } from './dto/updateProfile.dto';
@@ -32,6 +32,13 @@ export class UsersController {
         return {
             id,
             ...updateProfile
+        }
+    }
+
+    @Delete(":id")
+    delete(@Param("id") id: string) {
+        return {
+            id
         }
     }
 }
